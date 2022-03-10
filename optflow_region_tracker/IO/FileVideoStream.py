@@ -12,9 +12,10 @@ from threading import Thread
 from queue import Queue, Empty
 import warnings, time
 
+
 class FileVideoStream:
-    def __init__(self,filename,offset_ms=0,cap_backend=None):
-        if cap_backend==None:
+    def __init__(self, filename, offset_ms=0, cap_backend=None):
+        if cap_backend == None:
             self.__cap = cv2.VideoCapture(filename)
         else:  #  e.g. `cv2.VideoCapture(fname, cv2.CAP_FFMPEG)` if backend to be enforced
             self.__cap = cv2.VideoCapture(filename, cap_backend)
@@ -29,6 +30,7 @@ class FileVideoStream:
 
     def release(self):
         return self.__cap.release()
+
 
 class VideoStream:
     """
@@ -69,8 +71,19 @@ class VideoStream:
 
     Inspired by Adrian Rosenbrock's `filevideostream` class (https://github.com/jrosebr1/imutils/blob/master/imutils/video/filevideostream.py)
     """
-    def __init__(self, stream, skip_frames=0, transform=None,
-                queue_size=16, max_frames=None, cap_backend=None, sleep_time_if_full=0.1, timeout_if_empty=1, default_if_empty=None ):
+
+    def __init__(
+        self,
+        stream,
+        skip_frames=0,
+        transform=None,
+        queue_size=16,
+        max_frames=None,
+        cap_backend=None,
+        sleep_time_if_full=0.1,
+        timeout_if_empty=1,
+        default_if_empty=None,
+    ):
         """
         Parameters
         ----------
@@ -136,8 +149,11 @@ class VideoStream:
                 self.read_frames += 1
 
                 if not ret:
-#                    raise RuntimeError()
-                    print('[WARNING] Stopping stream because acquisition (`read()`) of new frame failed.')
+                    #                    raise RuntimeError()
+                    print(
+                        "[WARNING] Stopping stream because acquisition (`read()`) of"
+                        " new frame failed."
+                    )
                     self.__stopped = True
                     break
 
@@ -147,25 +163,35 @@ class VideoStream:
 
                 self.Q.put(frame)
                 # if a max number of frames to read was set and we reached it, stop now
-                if (self.max_frames is not None) and (self.read_frames>=self.max_frames):
-                    print('[INFO] Stopping stream because `max_frames` frames were read.')
+                if (self.max_frames is not None) and (
+                    self.read_frames >= self.max_frames
+                ):
+                    print(
+                        "[INFO] Stopping stream because `max_frames` frames were read."
+                    )
                     self.__stopped = True
                     break
                 # skip frames (if any)
                 for ii in range(self.skip_frames):
                     ret = self.__cap.grab()
                 if not ret:
-#                    raise RuntimeError()
-                    print('[WARNING] Stopping stream because acquisition (`grab()`) of new frame failed.')
+                    #                    raise RuntimeError()
+                    print(
+                        "[WARNING] Stopping stream because acquisition (`grab()`) of"
+                        " new frame failed."
+                    )
                     self.__stopped = True
             else:
                 time.sleep(self.__sleep_if_full)
 
         # if a max number of frames to read was set and we have not reached it yet but are stopping nonetheless
-        if (self.max_frames is not None) and (self.read_frames<self.max_frames):
-            warnings.warn('Failed to read new frame before max_frames were read.' +
-                          ' Read {:d} frames, but max_frames was {:d}.'.format(
-                              self.read_frames, self.max_frames))
+        if (self.max_frames is not None) and (self.read_frames < self.max_frames):
+            warnings.warn(
+                "Failed to read new frame before max_frames were read."
+                + " Read {:d} frames, but max_frames was {:d}.".format(
+                    self.read_frames, self.max_frames
+                )
+            )
         self.__cap.release()
 
     def read(self, timeout=None):
@@ -183,11 +209,16 @@ class VideoStream:
         queue element
             the oldest element from the queue. If ``transform`` is not None, then this is the output of applying the transformation to a read frame.
         """
-        if timeout is None: timeout=self.__timeout_if_empty
+        if timeout is None:
+            timeout = self.__timeout_if_empty
         try:
             frame = self.Q.get(timeout=timeout)
         except Empty:
-            warnings.warn('Queue was empty and stayed empty for %fs. Thread might have stopped, check with `FileVideoStream.isNotDone()`. Returning default.' % self.__timeout_if_empty)
+            warnings.warn(
+                "Queue was empty and stayed empty for %fs. Thread might have stopped,"
+                " check with `FileVideoStream.isNotDone()`. Returning default."
+                % self.__timeout_if_empty
+            )
             frame = self.__default_if_empty
         return frame
 
@@ -199,11 +230,11 @@ class VideoStream:
         Boolean
             ``self.Q.qsize()>0 or not self.__stopped``
         """
-        return self.Q.qsize()>0 or not self.__stopped
+        return self.Q.qsize() > 0 or not self.__stopped
 
     def stop(self):
         """Indicates that the thread should be stopped. You can still ``read()`` until the queue is empty."""
-        print('cap.stop has been called')
+        print("cap.stop has been called")
         # import pdb; pdb.set_trace();
         self.__stopped = True
         self.thread.join()
