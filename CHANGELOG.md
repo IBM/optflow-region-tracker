@@ -4,10 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-## [0.0.1] - 2019-02-15
+## [0.0.1] - 2022-03-10
 
 ### Added
-- Added a changelog
-
-[unreleased]: https://github.com/ibm/repo-template/compare/v0.0.1...HEAD
-[0.0.1]: https://github.com/ibm/repo-template/releases/tag/v0.0.1
+- `optflow_region_tracker/`: Main package code.
+    - `region_tracking.py`: Script providing CLI to tracking functionality
+    - `optflow_region_tracker.py`: Implementation of tracking algorithm
+    - `helper_functions/cv2_helpers`: module with additional GUI functionality for use with OpenCV
+    - `IO`: modules for reading video frames from files
+- `data/`: Example videos, frames, and screenshots
+- `docs/`: Preprint of the accompanying conference submission

@@ -1,3 +1,3 @@
 # MAINTAINERS
 
-Christopher Ferris - chrisfer@us.ibm.com
+Jonathan P. Epperlein -- jpepperlein {(at)} ie.ibm.com
