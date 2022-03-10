@@ -39,7 +39,7 @@ python -i ./optflow_region_tracker/region_tracking.py -s test --merged_video "./
 
 If everything is installed properly, you should be presented with a small GUI on which you can draw a few regions of interest. Once they're drawn, press "S" or "ESC" to start tracking. Two new windows open, one presenting the tracking (in the upper panel) and data collection (in the lower panel), the other updating curves of the collected data, one line per ROI drawn; see below and also `data/ScreenCapture.mov`.
 The folder specified after `--store_folder` should now contain the files `test_Intensities.csv`, `test_Tracking.mp4`, `test_InitialFrame.png` and `test_Intensities_plot.PNG`.
-  ![Screenshot](./data/synthetic_example_screenshot.PNG "Screenshot")  
+  ![Screenshot](./data/synthetic_example_screenshot.png "Screenshot")  
 
 ### Licensing Info
 The frame `data/frames/Angiodysplasie_cropped.jpg` was used to generate the example video file `data/synthetic_example.mp4`, using the same process as described in the paper.  
