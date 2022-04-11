@@ -1,6 +1,6 @@
 #
 # Copyright 2020- IBM Inc. All rights reserved
-# SPDX-License-Identifier: Apache2.0
+# SPDX-License-Identifier: Apache-2.0
 #
 # -- works with separate vis light and NIR videos, if requested
 # -- opens dialogue windows if no file paths specified
