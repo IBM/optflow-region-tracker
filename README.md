@@ -1,4 +1,4 @@
-Implementation of the region tracker described in the MICCAI 2022 submission "A Real-Time Region Tracking Algorithm Tailored to Endoscopic Video with Open-Source Implementation" (preprint in the `docs/` folder).
+Implementation of the region tracker described in the arxiv preprint "A Real-Time Region Tracking Algorithm Tailored to Endoscopic Video with Open-Source Implementation" (preprint in the `docs/` folder).
 ## Installation
 Using `conda`, it should be sufficient to create a new environment (I'm calling it `tracker` here), activate it, and
 install the requirements
