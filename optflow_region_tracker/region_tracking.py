@@ -14,8 +14,20 @@ from itertools import (
 )  #  neeeded to transpose a list of possibly uneven lists
 import numpy as np
 import matplotlib.pyplot as plt
+import packaging.version as ver
 import cv2
-
+# OpenCV version-specific aliases
+if ver.parse(cv2.__version__)>=ver.Version('4.0.0'):
+    # Syntax for DISFlow creation changed.
+    DISFlow_constructor = cv2.DISOpticalFlow_create
+    DIS_ULTRAFAST = cv2.DISOpticalFlow_PRESET_ULTRAFAST
+    DIS_FAST = cv2.DISOpticalFlow_PRESET_FAST
+    DIS_MEDIUM = cv2.DISOpticalFlow_PRESET_MEDIUM
+else:
+    DISFlow_constructor = cv2.optflow.createOptFlow_DIS
+    DIS_ULTRAFAST = cv2.optflow.DISOPTICAL_FLOW_PRESET_ULTRAFAST
+    DIS_FAST = cv2.optflow.DISOPTICAL_FLOW_PRESET_FAST
+    DIS_MEDIUM = cv2.optflow.DISOPTICAL_FLOW_PRESET_MEDIUM
 
 from IO.FileVideoStream import FileVideoStream, VideoStream
 import helper_functions.cv2_helpers as cv2h
@@ -658,7 +670,7 @@ if __name__ == "__main__":
             gray_tracker=False,
         )
     else:
-        dis = cv2.optflow.createOptFlow_DIS(cv2.optflow.DISOPTICAL_FLOW_PRESET_MEDIUM)
+        dis = DISFlow_constructor(DIS_MEDIUM)
         #  and the tracker itself
         tracker = ofrt.optflow_tracker(
             dis,
