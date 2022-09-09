@@ -1,3 +1,5 @@
+[![arXiv](https://img.shields.io/badge/arXiv-2203.08858-yellowgreen?)](https://arxiv.org/abs/2104.02184) 
+
 Implementation of the region tracker described in the arxiv preprint "A Real-Time Region Tracking Algorithm Tailored to Endoscopic Video with Open-Source Implementation" (preprint in the `docs/` folder).
 ## Installation
 Using `conda`, it should be sufficient to create a new environment (I'm calling it `tracker` here), activate it, and

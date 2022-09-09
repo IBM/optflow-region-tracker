@@ -1,0 +1,30 @@
+{
+    "creators": [
+        {
+            "orcid": "0000-0003-2912-0543",
+            "affiliation": "IBM Research Europe",
+            "name": "Epperlein, Jonathan P"
+        }
+    ],
+
+    "license": "Apache-2.0",
+
+    "title": "optflow-region-tracker",
+
+    "related_identifiers": [
+        {
+            "scheme": "doi",
+            "identifier": "10.48550/arXiv.2203.08858",
+            "relation": "isDocumentedBy",
+            "resource_type": "publication-article"
+        }
+    ],
+
+    "keywords": ["Object Tracking", "Computer Vision", "Endoscopy"],
+
+    "communities": [
+        {"identifier": ""}
+    ],
+
+    "grants": [{"id":"777541"}]
+}			
