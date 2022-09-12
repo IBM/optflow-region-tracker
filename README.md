@@ -1,4 +1,5 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2203.08858-yellowgreen?)](https://arxiv.org/abs/2203.08858) 
+[![DOI](https://zenodo.org/badge/468031750.svg)](https://zenodo.org/badge/latestdoi/468031750)
 
 Implementation of the region tracker described in the arxiv preprint "A Real-Time Region Tracking Algorithm Tailored to Endoscopic Video with Open-Source Implementation" (preprint in the `docs/` folder).
 ## Installation
